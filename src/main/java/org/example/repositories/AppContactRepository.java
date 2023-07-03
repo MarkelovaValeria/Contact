@@ -27,9 +27,9 @@ public class AppContactRepository implements ContactRepository {
     }
 
     @Override
-    public void editContact(Contact group, Contact new_group) {
-        int in = contacts.indexOf(group);
-        contacts.set(in, new_group);
+    public void editContact(Contact name, Contact new_name) {
+        int in = contacts.indexOf(name);
+        contacts.set(in, new_name);
     }
 
     @Override
@@ -41,11 +41,14 @@ public class AppContactRepository implements ContactRepository {
     public List<Contact> searchContact(String name) {
         List<Contact> search = new ArrayList<>();
         for (Contact contact : contacts){
-            if(contact.group().contains(name)){
+            if(contact.user().name().contains(name) ||
+               contact.user().surName().contains(name) ||
+               contact.phone().contains(name) ||
+               contact.group().contains(name)){
                 search.add(contact);
             }
         }
-        return null;
+        return search;
     }
 
     @Override
